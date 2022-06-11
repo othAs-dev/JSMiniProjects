@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check The Form !</title>
+    <style>
+        body{
+            background-color: rgba(212, 198, 114, 0.719);
+            display: block;
+        }
+        #block{
+            width: 10%;
+            height: 800px;
+            margin: auto;
+            margin-top: 15%;
+        } 
+    </style>
+</head>
+<body>
+    <!-- creation de div a appeler dans le script -->
+    <div id="block">
+        <form  action="" method="get" id="form-contact">
+            <label for="prenom">prenom : </label>
+            <input type="text" id="prenom" name="prenom">
+            <div id="fill-prenom"></div>
+            <label for="nom">nom : </label>
+            <input type="text" id="nom" name="nom">
+            <div id="fill-name"></div>
+            <label for="email">email : </label>
+            <input type="email" id="email" name="email">
+            <div id="fill-email"></div>
+           <input type="submit">
+        </form>
+    </div>
+    <script>
+        //quand le submit du formulaire form-contact est sollicité appel de la fonction verificationForm
+       document.getElementById("form-contact").addEventListener("submit", verificationForm);
+
+        function verificationForm(event){
+            //réinitialisation des messages d'alerte
+            document.getElementById("fill-prenom").innerHTML = "";
+            document.getElementById("fill-name").innerHTML = "";
+            document.getElementById("fill-email").innerHTML = "";
+            //récuperation des valeurs du formulaire
+            let controlPrenom = document.getElementById("prenom").value;
+            let controlNom = document.getElementById("nom").value;
+            let controlEmail = document.getElementById("email").value;
+            event.preventDefault(); //Sert a bloquer le refresh lors du submit
+            // vérification et affichage des messages d'alerte
+            if(controlPrenom =="" && controlNom =="" && controlEmail== ""){
+                alert("Remplissez tout les champs") 
+            } 
+            else if(controlPrenom == ""){
+                document.getElementById("fill-prenom").innerHTML = "Fill your prenom !";
+
+                    if(controlNom ==""){
+                        document.getElementById("fill-name").innerHTML = "Fill your name !";
+                    } 
+                    if(controlEmail ==""){
+                        document.getElementById("fill-email").innerHTML = "Fill your email !";
+                    }
+            }
+            else if(controlNom ==""){
+                document.getElementById("fill-name").innerHTML = "Fill your name !";
+
+                    if(controlEmail ==""){
+                        document.getElementById("fill-email").innerHTML = "Fill your email !";
+                    }
+            }
+            else if(controlEmail ==""){
+                document.getElementById("fill-email").innerHTML = "Fill your email !";
+            } 
+            else{
+                document.getElementById("form-contact").reset();
+                alert('Vos informations ont bien été envoyées !');
+
+            }
+    }
+    </script>
+</body>
+</html>

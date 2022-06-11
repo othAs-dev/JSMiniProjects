@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckBoxJS</title>
+</head>
+<body>
+    <style>
+        body{
+            background-color: rgb(231, 212, 212);
+        }
+        section{
+            border: 1px solid black;
+            border-radius: 5px;
+            width: 30%;
+            height: 400px;
+            background-color: rgb(113, 147, 209);
+            margin: auto;
+            margin-top: 18%;
+            transition: 
+            transform 0.15s ease-out, 
+            color 0.15s ease-out,
+            background-color 0.15s ease-out;
+        }
+        section:hover{
+            transform: translate(-10px, -10px);
+            color: #000;
+            background-color: rgb(10, 58, 73);
+            box-shadow: 8px 8px #000;
+            transition: 1s;
+        }
+        h1{
+            color: rgb(255, 224, 86);;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+        }
+        label,button{
+           display: block;
+           color: rgb(255, 255, 255);
+        }
+        input{
+            color: rgb(0, 0, 0);
+            display: block;
+            cursor: pointer;
+        }
+        button{
+            background-color: rgb(216, 180, 60);
+            border-radius: 5px;
+            border: 1px solid black;
+            padding: 8px;
+            box-shadow: 1px 1px 1px black;
+            cursor: pointer;
+        }
+        button:hover{
+            transition: 1s;
+            background-color: rgb(255, 224, 86);
+        }
+        #block{
+            padding-left: 10px;
+        }
+
+        #display-the-result{
+            border: 1px solid black;
+            height: 60px;
+            width: 90%;
+            background-color: rgb(235, 238, 243);
+            margin: auto;
+            margin-top: 30px;
+        }
+        div{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1>JS Exercice</h1>
+        <div id="block">
+            <input type="checkbox" id="semaines" name="jours" value="lundi">
+            <label for="semaines">Lundi</label>
+
+            <input type="checkbox" id="semaines" name="jours" value="mardi">
+            <label for="semaines">Mardi</label>
+
+            <input type="checkbox" id="semaines" name="jours" value="mercredi">
+            <label for="semaines">mercredi</label>
+
+            <input type="checkbox" id="semaines" name="jours" value="jeudi">
+            <label for="semaines">Jeudi</label>
+
+            <input type="checkbox" id="semaines" name="jours" value="vendredi">
+            <label for="semaines">Vendredi</label>
+
+            <button id="btn" onclick="displayValueCheckInDiv('jours')">Valider</button>
+
+            <div id="display-the-result"> 
+                <div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        function displayValueCheckInDiv(){
+            let checks = document.getElementsByName('jours');
+
+            var newDivOne = document.createElement("div");
+                    
+                    var newContentOne = document.createTextNode("Jai travaillé : " + " " );
+                    
+                    newDivOne.appendChild(newContentOne);
+                    
+                    var currentDiv = document.getElementById('div');
+                    document.body.insertBefore(newDivOne, currentDiv);
+
+                    
+
+            for(let i = 0; i < checks.length; i++){
+                if(checks[i].checked){
+                    var newDiv = document.createElement("div");
+                    
+                    var newContent = document.createTextNode(  checks[i].value);
+                    
+                    newDiv.appendChild(newContent);
+                    var currentDiv = document.getElementById('div');
+                    document.body.insertBefore(newDiv, currentDiv);
+                }
+
+            }
+            changeColorOfBtn();
+        };
+        function changeColorOfBtn(){
+            let letters = '0123456789ABCDEF';
+            let color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 15)];
+            }
+            document.querySelector('body').style.backgroundColor = color;
+        };
+    </script>
+</body>
+</html>
